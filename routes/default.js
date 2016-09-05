@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var feed = require("../feedReadModified");
 var request = require('request');
 var parseString = require('xml2js').parseString;
 var superagent = require('superagent');
