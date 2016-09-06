@@ -7,6 +7,7 @@ html(lang='en')
     // CSS
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons",rel="stylesheet")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css")
+    link(rel="stylesheet" href="/stylesheets/style.css")
 
   block body
     body
@@ -22,6 +23,22 @@ html(lang='en')
               button.waves-effect.waves-light.btn#read
                 | Read
 
+        .container.margin_100#content_container
+          .row#daLabelDiv
+          .row#feedSubtitleDiv
+          ul.collapsible(data-collapsible='accordion')#data_ul
+
+
+    block modal
+      .modal#message_window
+        .modal-content
+          h4.header.red-text.center "Message"
+          p#message_text
+        .modal-footer
+          a.modal-action.modal-close.waves-effect.waves-green.btn-flat.btn.green.white-text
+            |OK
+
+    // Scripts
     script(src='https://code.jquery.com/jquery-2.1.1.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js')
     script(src='/javascripts/init.js')

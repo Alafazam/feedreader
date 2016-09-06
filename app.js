@@ -13,6 +13,7 @@ var server = require('http').createServer(app);
 var default_route  = require('./routes/default');
 var config = require('./config');
 
+var FileStore = require('session-file-store')(Session);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(Session(config.session));
