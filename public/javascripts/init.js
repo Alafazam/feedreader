@@ -45,7 +45,7 @@ $(document).ready(function() {
                 secs++;
                 if (secs >= 60) { secs = secs % 60; mins++; }
                 if (mins >= 60) { mins = mins % 60; hours++;}
-                var since = "Reading since " + (hours > 0 ? hours + 'h' : "") + (mins > 0 ? min + 'm' : "") + secs + 's';
+                var since = "Reading since " + (hours > 0 ? hours + 'h' : "") + (mins > 0 ? mins + 'm' : "") + secs + 's';
                 $("#timespent").html(since);
             }, 1000);
 
