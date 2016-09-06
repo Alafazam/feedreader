@@ -57,7 +57,7 @@ $(document).ready(function() {
             }
 
             var da = data.data.feed;
-            var daLabel = da.category[0].$.label;
+            var daLabel = (typeof da['category'] != 'undefined') ? da.category[0].$.label : '';
             var feedpageLink = $('<a/>').html(daLabel).attr('href', "https://reddit.com" + daLabel);
             daLabelDiv.html("reading from ");
             daLabelDiv.append(feedpageLink);
@@ -74,14 +74,14 @@ $(document).ready(function() {
                 // 'author','category','content','id','link','title','updated'
                 // console.log(entity);
                 var details = {
-                    'authorName': entry.author[0].name[0],
-                    'authorUri': entry.author[0].uri[0],
-                    'categoryTerm': entry.category[0].$.term,
-                    'categoryLabel': entry.category[0].$.label,
-                    'entryId': entry.id[0],
-                    'entryLink': entry.link[0].$.href,
-                    'entryTitle': entry.title[0],
-                    'contents_': entry.content[0]._,
+                    'authorName': (typeof entry['author'] != 'undefined') ? entry.author[0].name[0] : '',
+                    'authorUri': (typeof entry['author'] != 'undefined') ? entry.author[0].uri[0] : '',
+                    'categoryTerm': (typeof entry['category'] != 'undefined') ? entry.category[0].$.term : '',
+                    'categoryLabel': (typeof entry['category'] != 'undefined') ? entry.category[0].$.label :'',
+                    'entryId': (typeof entry['id'] != 'undefined') ? entry.id[0] : '',
+                    'entryLink': (typeof entry['link'] != 'undefined') ? entry.link[0].$.href : '',
+                    'entryTitle': (typeof entry['title'] != 'undefined') ? entry.title[0] : '',
+                    'contents_': (typeof entry['content'] != 'undefined') ? entry.content[0]._ : '',
                     'feedBaseUrl': 'https://reddit.com'
                 }
                 var b = _g_(details);
