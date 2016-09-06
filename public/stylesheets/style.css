@@ -63,6 +63,11 @@ a.btn-flat{
     max-width:100px;
 }
 
+.contains_table img{
+    max-width: 400px;
+    max-height: 400px;
+}
+
 @media only screen and (max-width: 500px) {
     .btn, .btn-large, .btn-flat {
         padding: 0 1%;
