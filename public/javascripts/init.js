@@ -27,6 +27,10 @@ $(document).ready(function() {
 
     $('#read').click(function() {
         var bogieURL = $('#rss_feed_url')[0].value || "https://www.reddit.com/r/unixporn/.rss";
+
+        // http://stackoverflow.com/questions/1420881/how-to-extract-base-url-from-a-string-in-javascript
+        var baseurl = str.match(/^(([a-z]+:)?(\/\/)?[^\/]+\/).*$/)[1];
+
         var ul = $('#data_ul')[0];
         var daLabelDiv = $("#daLabelDiv");
         var feedSubtitleDiv = $("#feedSubtitleDiv");
@@ -73,6 +77,10 @@ $(document).ready(function() {
             da.entry.forEach((entry) => {
                 // 'author','category','content','id','link','title','updated'
                 // console.log(entity);
+                // img src="/
+                var contents = (typeof entry['content'] != 'undefined') ? entry.content[0]._ : '';
+                contents = contents.replace('img src="/', 'img src="' + baseurl+'/');
+                contents = contents.replace("img src='/", "img src='" + baseurl+"/");
                 var details = {
                     'authorName': (typeof entry['author'] != 'undefined') ? entry.author[0].name[0] : '',
                     'authorUri': (typeof entry['author'] != 'undefined') ? entry.author[0].uri[0] : '',
@@ -81,7 +89,7 @@ $(document).ready(function() {
                     'entryId': (typeof entry['id'] != 'undefined') ? entry.id[0] : '',
                     'entryLink': (typeof entry['link'] != 'undefined') ? entry.link[0].$.href : '',
                     'entryTitle': (typeof entry['title'] != 'undefined') ? entry.title[0] : '',
-                    'contents_': (typeof entry['content'] != 'undefined') ? entry.content[0]._ : '',
+                    'contents_': contents,
                     'feedBaseUrl': 'https://reddit.com'
                 }
                 var b = _g_(details);
