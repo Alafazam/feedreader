@@ -5,24 +5,13 @@ function _g_(it) {
 
 
 console.log("hello from the other side");
-var da;
-var feeds;
-var feedId;
-var feedSubtitle;
-var daTerm;
-var daLabel;
-var daIcon;
-var daLogo;
-var parenta ;
 
-function toggle_display (e) {
-    if($(this).html() == "Hide"){
-        console.log($(this));
-        console.log($(this).parent().find('.entryTitle'));
+function toggle_display(e) {
+    if ($(this).html() == "Hide") {
         $(this).parent().find('.entryTitle').hide();
         $(this).parent().parent().find("div#content_body").removeClass('collapsible-body').hide();
         $(this).html("Show");
-    }else{
+    } else {
         $(this).parent().find('.entryTitle').show();
         $(this).parent().parent().find("div#content_body").addClass('collapsible-body').show();
         $(this).html("Hide");
@@ -30,10 +19,12 @@ function toggle_display (e) {
     return false;
 }
 
-
-
-
 $(document).ready(function() {
+    var start = new Date();
+    $("#currentTimeDiv").html(start.toISOString());
+    var timeoutID;
+    // updateTime(start);
+
     $('#read').click(function() {
         var bogieURL = $('#rss_feed_url')[0].value || "https://www.reddit.com/r/unixporn/.rss";
         var ul = $('#data_ul')[0];
@@ -43,7 +34,21 @@ $(document).ready(function() {
         $.get('/readFeed', {
             q: bogieURL
         }, (data) => {
-            // todo: add error handling.
+            ul.innerHTML='';
+            var secs = 0;
+            var mins = 0;
+            var hours = 0;
+            if(typeof timeoutID != undefined)
+                clearTimeout(timeoutID);
+
+            timeoutID = window.setInterval(() => {
+                secs++;
+                if (secs >= 60) { secs = secs % 60; mins++; }
+                if (mins >= 60) { mins = mins % 60; hours++;}
+                var since = "Reading since " + (hours > 0 ? hours + 'h' : "") + (mins > 0 ? min + 'm' : "") + secs + 's';
+                $("#timespent").html(since);
+            }, 1000);
+
             if (data.err) {
                 console.log(data.err);
                 $('#message_text').html(data.err);
@@ -51,18 +56,18 @@ $(document).ready(function() {
                 return;
             }
 
-            da = data.data.feed;
-            // daTerm = da.category[0].$.term;
-            // feedId = da.id[0];
-            daLabel = da.category[0].$.label;
-            feedpageLink = $('<a/>').html(daLabel).attr('href',"https://reddit.com" + daLabel);
+            var da = data.data.feed;
+            var daLabel = da.category[0].$.label;
+            var feedpageLink = $('<a/>').html(daLabel).attr('href', "https://reddit.com" + daLabel);
             daLabelDiv.html("reading from ");
             daLabelDiv.append(feedpageLink);
+            // daTerm = da.category[0].$.term;
+            // feedId = da.id[0];
 
             // only present in subreddits and comments
-            daIcon = (typeof da['icon'] != 'undefined') ? da.icon[0] : '';
-            daLogo = (typeof da['logo'] != 'undefined') ? da.logo[0] : '';
-            feedSubtitle = (typeof da['subtitle'] != 'undefined') ? da.subtitle[0] : '';
+            var daIcon = (typeof da['icon'] != 'undefined') ? da.icon[0] : '';
+            var daLogo = (typeof da['logo'] != 'undefined') ? da.logo[0] : '';
+            var feedSubtitle = (typeof da['subtitle'] != 'undefined') ? da.subtitle[0] : '';
             feedSubtitleDiv.html(feedSubtitle);
 
             da.entry.forEach((entry) => {
@@ -82,7 +87,7 @@ $(document).ready(function() {
                 var b = _g_(details);
                 var ela = $('<li/>').html(b)[0];
                 var hidebtn = $(ela).find("#hideBadge");
-                $(hidebtn).on('click',toggle_display);
+                $(hidebtn).on('click', toggle_display);
                 ul.appendChild(ela);
             });
             $("#content_container").show();
