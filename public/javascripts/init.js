@@ -29,7 +29,7 @@ $(document).ready(function() {
         var bogieURL = $('#rss_feed_url')[0].value || "https://www.reddit.com/r/unixporn/.rss";
 
         // http://stackoverflow.com/questions/1420881/how-to-extract-base-url-from-a-string-in-javascript
-        var baseurl = str.match(/^(([a-z]+:)?(\/\/)?[^\/]+\/).*$/)[1];
+        var baseurl = bogieURL.match(/^(([a-z]+:)?(\/\/)?[^\/]+\/).*$/)[1];
 
         var ul = $('#data_ul')[0];
         var daLabelDiv = $("#daLabelDiv");
