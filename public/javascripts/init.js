@@ -79,8 +79,8 @@ $(document).ready(function() {
                 // console.log(entity);
                 // img src="/
                 var contents = (typeof entry['content'] != 'undefined') ? entry.content[0]._ : '';
-                contents = contents.replace('img src="/', 'img src="' + baseurl+'/');
-                contents = contents.replace("img src='/", "img src='" + baseurl+"/");
+                contents = contents.replace('img src="/', 'img src="' + baseurl);
+                contents = contents.replace("img src='/", "img src='" + baseurl);
                 var details = {
                     'authorName': (typeof entry['author'] != 'undefined') ? entry.author[0].name[0] : '',
                     'authorUri': (typeof entry['author'] != 'undefined') ? entry.author[0].uri[0] : '',
