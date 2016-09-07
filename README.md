@@ -29,4 +29,4 @@ Have a look.
 
 ![Rss Feed Reader][screenshot]
 
-[screenshot]: https://github.com/Alafazam/feedreader/raw/feedrea.jpg "Rss Feed Reader"
+[screenshot]: https://raw.githubusercontent.com/Alafazam/feedreader/master/feedrea.jpg "Rss Feed Reader"
