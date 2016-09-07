@@ -23,3 +23,10 @@ Feed Reader works best with:
 + A multireddit: (http://www.reddit.com/r/news+wtf.rss) (note that the slash is optional).
 + The comments on a specific reddit post: (http://www.reddit.com/r/technology/comments/1uc9ro/wearing_a_mind_controlled_exoskeleton_a_paralyzed/.rss)
 + Submissions from a domain: (http://www.reddit.com/domain/microsoft.com/.rss)
+
+Have a look.
+
+
+![Rss Feed Reader][screenshot]
+
+[screenshot]: https://github.com/Alafazam/feedreader/raw/feedrea.jpg "Rss Feed Reader"
