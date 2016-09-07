@@ -4,7 +4,7 @@ A Rss Feed Reader.
 
 Hosted at [feedreader-alafazam.rhcloud.com](feedreader-alafazam.rhcloud.com).
 
-FrameWorks and Libraries that I have used.
+Frameworks and Libraries that I have used.
 
 Front End  
 [materializecss.com](materializecss.com)
